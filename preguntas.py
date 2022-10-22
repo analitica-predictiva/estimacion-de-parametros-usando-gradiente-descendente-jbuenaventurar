@@ -19,7 +19,7 @@ def pregunta_01():
     from sklearn.preprocessing import PolynomialFeatures 
  
     # Cargue el dataset data.csv 
-    data = pd.read_csv("/content/data.csv") 
+    data = pd.read_csv("data.csv") 
  
     # Cree un objeto de tipo PolynomialFeatures con grado 2 
     poly = PolynomialFeatures(degree = 2) 

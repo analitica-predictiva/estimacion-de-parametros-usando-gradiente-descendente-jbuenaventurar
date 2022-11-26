@@ -8,26 +8,26 @@ polinomial de grado `n`.
 """
 
 
-def pregunta_01():
-    """
-    Complete el código presentado a continuación.
-    """
-    # Importe pandas
-    import ___ as ___
-
-    # Importe PolynomialFeatures
-    from ___ import ___
-
-    # Cargue el dataset `data.csv`
-    data = ___.___("___")
-
-    # Cree un objeto de tipo `PolynomialFeatures` con grado `2`
-    poly = ___.___(___)
-
-    # Transforme la columna `x` del dataset `data` usando el objeto `poly`
-    x_poly = poly.___(data[["___"]])
-
-    # Retorne x y y
+def pregunta_01(): 
+    """ 
+    Complete el código presentado a continuación. 
+    """ 
+    # Importe pandas 
+    import pandas as pd 
+ 
+    # Importe PolynomialFeatures 
+    from sklearn.preprocessing import PolynomialFeatures 
+ 
+    # Cargue el dataset data.csv 
+    data = pd.read_csv("data.csv") 
+ 
+    # Cree un objeto de tipo PolynomialFeatures con grado 2 
+    poly = PolynomialFeatures(degree = 2) 
+ 
+    # Transforme la columna x del dataset data usando el objeto poly 
+    x_poly = poly.fit_transform(data[["x"]]).round(3) 
+ 
+    # Retorne x y y 
     return x_poly, data.y
 
 

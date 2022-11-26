@@ -51,21 +51,33 @@ def test_01():
             assert x_poly[i, j] == x_expected[i, j]
 
 
-def test_02():
-    """
-    ---< Run command >-------------------------------------------------------------------
-    Pregunta 02
-    pip3 install scikit-learn pandas numpy
-    python3 tests.py 02
-    """
-    params = preguntas.pregunta_02()
-    expected = np.array([0.666, -3.0, 2.032])
-    assert np.allclose(params, expected, atol=1e-3)
-
-
-test = {
-    "01": test_01,
-    "02": test_02,
-}[sys.argv[1]]
-
-test()
+def pregunta_02(): 
+ 
+    # Importe numpy 
+    import numpy as np 
+ 
+    x_poly, y = pregunta_01() 
+ 
+    # Fije la tasa de aprendizaje en 0.0001 y el número de iteraciones en 1000 
+    learning_rate = 0.0001 
+    n_iterations = 1000 
+ 
+    # Defina el parámetro inicial params como un arreglo de tamaño 3 con ceros 
+    intercept_ = np.mean(np.array(y)) 
+    params = np.zeros(x_poly.shape[1]) 
+    for epochs in range(n_iterations): 
+ 
+        # Compute el pronóstico con los parámetros actuales 
+        y_pred = np.dot(x_poly, params) 
+ 
+        # Calcule el error 
+        error = (y - y_pred) / 2 
+ 
+        # Calcule el gradiente 
+        gradient = -2*np.sum(np.multiply(x_poly,np.array(error)[:,np.newaxis]),axis=0) 
+        #gradient =  -2*sum(error) 
+ 
+        # Actualice los parámetros 
+        params = params - learning_rate * gradient 
+ 
+    return params
